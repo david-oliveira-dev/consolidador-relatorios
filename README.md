@@ -11,15 +11,18 @@
 
 ## Antes / Depois
 
-| Antes | Depois |
+![Antes e depois: de planilhas bagunçadas a um relatório pronto](docs/imagens/03_antes_vs_depois.png)
+
+| Antes 😩 | Depois 🎉 |
 |---|---|
 | Vários arquivos Excel/CSV, abas soltas, colunas com nomes diferentes (`Data`, `DT`, `data da venda`), números em formatos misturados (`1.200,50` e `1200.5`), células vazias e linhas em branco. | Um Excel formatado com aba de dados + resumo + gráfico, **e** um PDF executivo de 1 página com os números-chave. |
 
-<!-- Cole aqui 2 prints: (1) as planilhas bagunçadas, (2) o relatório final limpo -->
-
-| Planilhas de entrada | Relatório gerado |
-|---|---|
-| _(print das planilhas bagunçadas aqui)_ | _(print do relatório/PDF aqui)_ |
+<table>
+<tr>
+<td width="50%"><strong>Entrada (bagunçada)</strong><br><img src="docs/imagens/01_antes_planilhas.png" alt="Planilhas de entrada bagunçadas"></td>
+<td width="50%"><strong>Saída (PDF executivo)</strong><br><img src="docs/imagens/02_depois_relatorio.png" alt="Relatório executivo gerado"></td>
+</tr>
+</table>
 
 ---
 
