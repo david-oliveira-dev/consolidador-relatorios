@@ -1,0 +1,18 @@
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Caches do Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Saída gerada pela ferramenta (relatórios) — não versionar
+saida/
+
+# Arquivos de sistema / editor
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,33 @@
+[project]
+name = "consolidador-relatorios"
+version = "0.1.0"
+description = "Consolidador Automático de Relatórios — lê planilhas bagunçadas e gera um relatório único e limpo."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "David Alves de Oliveira" }]
+license = { text = "MIT" }
+
+dependencies = [
+    "pandas>=2.2",
+    "openpyxl>=3.1",   # ler/escrever .xlsx (engine do pandas para Excel)
+    "typer>=0.12",     # CLI amigável baseada em type hints
+    "rich>=13.7",      # output bonito no terminal (cores, tabelas, barra de progresso)
+    "matplotlib>=3.8", # gráficos do Excel e do PDF executivo (saída vetorial)
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+# Comando de terminal: depois de instalar, o usuário roda `consolidador ...`
+[project.scripts]
+consolidador = "consolidador.cli:app"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# Layout "src": o pacote vive em src/consolidador
+[tool.setuptools.packages.find]
+where = ["src"]
