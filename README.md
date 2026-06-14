@@ -11,7 +11,7 @@
 
 ## Antes / Depois
 
-| Antes 😩 | Depois 🎉 |
+| Antes | Depois |
 |---|---|
 | Vários arquivos Excel/CSV, abas soltas, colunas com nomes diferentes (`Data`, `DT`, `data da venda`), números em formatos misturados (`1.200,50` e `1200.5`), células vazias e linhas em branco. | Um Excel formatado com aba de dados + resumo + gráfico, **e** um PDF executivo de 1 página com os números-chave. |
 
