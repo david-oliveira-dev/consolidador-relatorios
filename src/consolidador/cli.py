@@ -11,6 +11,7 @@ Uso:
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -34,18 +35,22 @@ NOME_PDF = "resumo_executivo.pdf"
 
 @app.command()
 def main(
-    entrada: Path = typer.Option(
-        ...,
-        "--entrada",
-        "-e",
-        help="Pasta com as planilhas a consolidar (.xlsx, .xls, .csv).",
-    ),
-    saida: Path = typer.Option(
-        Path("saida"),
-        "--saida",
-        "-s",
-        help="Pasta onde os relatórios serão salvos.",
-    ),
+    entrada: Annotated[
+        Path,
+        typer.Option(
+            "--entrada",
+            "-e",
+            help="Pasta com as planilhas a consolidar (.xlsx, .xls, .csv).",
+        ),
+    ],
+    saida: Annotated[
+        Path,
+        typer.Option(
+            "--saida",
+            "-s",
+            help="Pasta onde os relatórios serão salvos.",
+        ),
+    ] = Path("saida"),
 ) -> None:
     """Consolida as planilhas da pasta de ENTRADA e gera relatório na SAÍDA."""
     console.print(
@@ -83,14 +88,14 @@ def main(
     except (ErroLeitura, ErroConsolidacao) as erro:
         # Erros esperados, já com mensagem amigável: mostra e encerra sem stacktrace.
         console.print(f"\n[bold red]✗ Não foi possível concluir:[/bold red] {erro}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from None
     except Exception as erro:  # noqa: BLE001 — rede de segurança
         console.print(
             f"\n[bold red]✗ Ocorreu um erro inesperado:[/bold red] {erro}\n"
             "Se o problema persistir, verifique se os arquivos não estão abertos "
             "em outro programa."
         )
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from None
 
     # --- Resumo final ---
     df = resultado.dados
@@ -104,9 +109,7 @@ def main(
     linhas.append(f"[green]✓[/green] Excel: [cyan]{caminho_excel}[/cyan]")
     linhas.append(f"[green]✓[/green] PDF:   [cyan]{caminho_pdf}[/cyan]")
 
-    console.print(
-        Panel("\n".join(linhas), title="Concluído", border_style="green")
-    )
+    console.print(Panel("\n".join(linhas), title="Concluído", border_style="green"))
 
 
 if __name__ == "__main__":

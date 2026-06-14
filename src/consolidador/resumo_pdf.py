@@ -12,13 +12,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import matplotlib
+# Não forçamos um backend aqui: em terminal/servidor sem tela o matplotlib já
+# seleciona o 'Agg' sozinho, e savefig() funciona em qualquer backend. Assim o
+# gráfico também renderiza inline quando o módulo é usado num Jupyter Notebook.
+import matplotlib.pyplot as plt
+import pandas as pd
 
-matplotlib.use("Agg")  # backend sem janela (geramos arquivo, não exibimos)
-import matplotlib.pyplot as plt  # noqa: E402
-import pandas as pd  # noqa: E402
-
-from consolidador.relatorio import resumo_por_produto  # noqa: E402
+from consolidador.relatorio import resumo_por_produto
 
 _AZUL = "#305496"
 _CINZA = "#595959"
@@ -65,13 +65,20 @@ def gerar_resumo_pdf(df: pd.DataFrame, caminho_saida: Path) -> Path:
     fig = plt.figure(figsize=(8.27, 11.69))
 
     # --- Título ---
-    fig.text(0.5, 0.95, "Relatório Consolidado de Vendas", ha="center",
-             fontsize=22, fontweight="bold", color=_AZUL)
+    fig.text(
+        0.5,
+        0.95,
+        "Relatório Consolidado de Vendas",
+        ha="center",
+        fontsize=22,
+        fontweight="bold",
+        color=_AZUL,
+    )
     fig.text(0.5, 0.915, "Resumo executivo", ha="center", fontsize=12, color=_CINZA)
 
     # --- 4 cartões de KPI distribuídos na horizontal ---
     posicoes_x = [0.16, 0.38, 0.62, 0.85]
-    for x, (titulo, valor) in zip(posicoes_x, kpis.items()):
+    for x, (titulo, valor) in zip(posicoes_x, kpis.items(), strict=True):
         _desenhar_cartao(fig, x, titulo, valor)
 
     # --- Gráfico de barras: faturamento por produto ---
@@ -83,17 +90,28 @@ def gerar_resumo_pdf(df: pd.DataFrame, caminho_saida: Path) -> Path:
     ax.tick_params(axis="x", rotation=20)
 
     # rótulo do valor em cima de cada barra
-    for barra, valor in zip(barras, rp["faturamento"]):
-        ax.text(barra.get_x() + barra.get_width() / 2, valor,
-                formatar_brl(valor), ha="center", va="bottom", fontsize=8)
+    for barra, valor in zip(barras, rp["faturamento"], strict=True):
+        ax.text(
+            barra.get_x() + barra.get_width() / 2,
+            valor,
+            formatar_brl(valor),
+            ha="center",
+            va="bottom",
+            fontsize=8,
+        )
     ax.margins(y=0.15)  # espaço pro rótulo não encostar no topo
 
     # --- Rodapé ---
     fontes = df["origem"].nunique()
-    fig.text(0.5, 0.04,
-             f"Gerado automaticamente pelo Consolidador de Relatórios • "
-             f"{len(df)} registros de {fontes} fontes",
-             ha="center", fontsize=9, color=_CINZA)
+    fig.text(
+        0.5,
+        0.04,
+        f"Gerado automaticamente pelo Consolidador de Relatórios • "
+        f"{len(df)} registros de {fontes} fontes",
+        ha="center",
+        fontsize=9,
+        color=_CINZA,
+    )
 
     fig.savefig(caminho_saida, format="pdf")
     plt.close(fig)  # libera memória (importante ao gerar vários relatórios)

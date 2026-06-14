@@ -58,18 +58,14 @@ def normalizar_nome_coluna(nome: str) -> str:
     """
     texto = str(nome).strip().lower()
     # NFKD separa a letra do acento; descartamos os caracteres de acento.
-    texto = "".join(
-        c for c in unicodedata.normalize("NFKD", texto) if not unicodedata.combining(c)
-    )
+    texto = "".join(c for c in unicodedata.normalize("NFKD", texto) if not unicodedata.combining(c))
     texto = re.sub(r"\s+", "_", texto.strip())  # espaços -> underscore
     texto = re.sub(r"[^a-z0-9_]", "", texto)  # remove o que não for letra/dígito/_
     texto = re.sub(r"_+", "_", texto).strip("_")  # colapsa underscores repetidos
     return texto
 
 
-def padronizar_colunas(
-    df: pd.DataFrame, mapeamento: dict[str, str] | None = None
-) -> pd.DataFrame:
+def padronizar_colunas(df: pd.DataFrame, mapeamento: dict[str, str] | None = None) -> pd.DataFrame:
     """Normaliza os nomes e aplica o mapeamento canônico.
 
     Colunas desconhecidas (fora do mapeamento) mantêm o nome normalizado, em
@@ -159,9 +155,7 @@ def remover_linhas_vazias(df: pd.DataFrame) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Orquestrador
 # ---------------------------------------------------------------------------
-def limpar_dataframe(
-    df: pd.DataFrame, mapeamento: dict[str, str] | None = None
-) -> pd.DataFrame:
+def limpar_dataframe(df: pd.DataFrame, mapeamento: dict[str, str] | None = None) -> pd.DataFrame:
     """Aplica todas as etapas de limpeza e devolve um DataFrame padronizado."""
     df = padronizar_colunas(df, mapeamento)
     df = remover_linhas_vazias(df)

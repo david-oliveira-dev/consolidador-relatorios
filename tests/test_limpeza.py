@@ -34,8 +34,8 @@ def test_normalizar_nome_coluna(entrada, esperado):
     "entrada, esperado",
     [
         ("1.200,50", 1200.50),  # BR: ponto milhar, vírgula decimal
-        ("57,83", 57.83),        # BR: só vírgula decimal
-        ("1096.40", 1096.40),    # US: ponto decimal
+        ("57,83", 57.83),  # BR: só vírgula decimal
+        ("1096.40", 1096.40),  # US: ponto decimal
         ("1.147,61", 1147.61),
     ],
 )
@@ -82,9 +82,7 @@ def test_padronizar_texto_uniformiza_caixa_e_espacos():
 
 
 def test_remover_linhas_totalmente_vazias():
-    df = pd.DataFrame(
-        {"a": [1, None, 3, ""], "b": ["x", None, "z", "  "]}
-    )
+    df = pd.DataFrame({"a": [1, None, 3, ""], "b": ["x", None, "z", "  "]})
     resultado = remover_linhas_vazias(df)
     # remove a linha toda-None e a linha com strings vazias/espaços
     assert len(resultado) == 2

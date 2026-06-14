@@ -1,0 +1,37 @@
+=========================================================
+COMO ABRIR O NOTEBOOK DE DEMONSTRACAO (demo.ipynb)
+Projeto: Consolidador Automatico de Relatorios
+=========================================================
+
+OPCAO 1 - Comando unico (copie e cole no terminal):
+
+cd "/home/david-alves-de-oliveira/Documentos/TI/git/Projeto 1 /consolidador-relatorios" && source .venv/bin/activate && jupyter lab demo.ipynb
+
+
+OPCAO 2 - Passo a passo:
+
+1) Abrir o terminal.
+
+2) Entrar na pasta do projeto:
+   cd "/home/david-alves-de-oliveira/Documentos/TI/git/Projeto 1 /consolidador-relatorios"
+
+3) Ativar o ambiente virtual:
+   source .venv/bin/activate
+
+4) Abrir o JupyterLab no notebook:
+   jupyter lab demo.ipynb
+
+
+DENTRO DO JUPYTER:
+- Para rodar tudo do zero: menu  Run > Run All Cells
+- Para fechar: feche a aba do navegador e aperte Ctrl+C no terminal.
+
+
+COMANDO RAPIDO (sem abrir o navegador) - so para confirmar que funciona:
+
+cd "/home/david-alves-de-oliveira/Documentos/TI/git/Projeto 1 /consolidador-relatorios" && source .venv/bin/activate && consolidador --entrada ./dados_exemplo --saida ./saida
+
+Os relatorios sao gerados na pasta:  saida/
+  - relatorio_consolidado.xlsx
+  - resumo_executivo.pdf
+=========================================================

@@ -18,6 +18,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
+    "jupyterlab>=4.0",  # para abrir/rodar o demo.ipynb
+    "ruff>=0.6",        # linter + formatador
 ]
 
 # Comando de terminal: depois de instalar, o usuário roda `consolidador ...`
@@ -31,3 +33,16 @@ build-backend = "setuptools.build_meta"
 # Layout "src": o pacote vive em src/consolidador
 [tool.setuptools.packages.find]
 where = ["src"]
+
+# ---------------------------------------------------------------------------
+# Ruff — linter + formatador (https://docs.astral.sh/ruff/)
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# Não checamos o script gerador de dados de exemplo com o mesmo rigor.
+extend-exclude = ["dados_exemplo/_gerar_dados.py"]
+
+[tool.ruff.lint]
+# E/F = erros e pyflakes; I = ordena imports; B = bugbear; UP = moderniza sintaxe.
+select = ["E", "F", "I", "B", "UP"]

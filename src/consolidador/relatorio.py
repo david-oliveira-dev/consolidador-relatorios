@@ -79,10 +79,7 @@ def _aplicar_formato_numerico(
     ws: Worksheet, header_row: int, n_linhas: int, formatos: dict[str, str]
 ) -> None:
     """Aplica formato (moeda/inteiro/data) às colunas pelo nome do cabeçalho."""
-    cabecalhos = {
-        ws.cell(row=header_row, column=c).value: c
-        for c in range(1, ws.max_column + 1)
-    }
+    cabecalhos = {ws.cell(row=header_row, column=c).value: c for c in range(1, ws.max_column + 1)}
     for nome, fmt in formatos.items():
         col = cabecalhos.get(nome)
         if col is None:
@@ -147,8 +144,12 @@ def gerar_relatorio_excel(df: pd.DataFrame, caminho_saida: Path) -> Path:
         _ajustar_larguras(ws_dados)
 
         # --- Aba Resumo: títulos das tabelas ---
-        ws_resumo.cell(row=linha_titulo_prod, column=1, value="Faturamento por Produto").font = Font(bold=True, size=12)
-        ws_resumo.cell(row=linha_titulo_mes, column=1, value="Faturamento por Mês").font = Font(bold=True, size=12)
+        ws_resumo.cell(
+            row=linha_titulo_prod, column=1, value="Faturamento por Produto"
+        ).font = Font(bold=True, size=12)
+        ws_resumo.cell(row=linha_titulo_mes, column=1, value="Faturamento por Mês").font = Font(
+            bold=True, size=12
+        )
 
         # cabeçalhos das duas tabelas
         _estilizar_cabecalho(ws_resumo, header_prod, len(rp.columns))
@@ -156,13 +157,21 @@ def gerar_relatorio_excel(df: pd.DataFrame, caminho_saida: Path) -> Path:
 
         # formatos da tabela de produtos
         _aplicar_formato_numerico(
-            ws_resumo, header_prod, len(rp),
-            {"faturamento": FORMATO_MOEDA, "ticket_medio": FORMATO_MOEDA,
-             "quantidade_total": FORMATO_INTEIRO, "num_vendas": FORMATO_INTEIRO},
+            ws_resumo,
+            header_prod,
+            len(rp),
+            {
+                "faturamento": FORMATO_MOEDA,
+                "ticket_medio": FORMATO_MOEDA,
+                "quantidade_total": FORMATO_INTEIRO,
+                "num_vendas": FORMATO_INTEIRO,
+            },
         )
         # formatos da tabela de meses
         _aplicar_formato_numerico(
-            ws_resumo, header_mes, len(rm),
+            ws_resumo,
+            header_mes,
+            len(rm),
             {"faturamento": FORMATO_MOEDA, "num_vendas": FORMATO_INTEIRO},
         )
         _ajustar_larguras(ws_resumo)

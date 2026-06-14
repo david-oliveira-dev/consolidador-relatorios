@@ -1,5 +1,10 @@
 # Consolidador Automático de Relatórios
 
+[![CI](https://github.com/david-oliveira-dev/consolidador-relatorios/actions/workflows/ci.yml/badge.svg)](https://github.com/david-oliveira-dev/consolidador-relatorios/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 **Transforme dezenas de planilhas bagunçadas em um relatório único, limpo e apresentável — em segundos, com um comando.**
 
 ---

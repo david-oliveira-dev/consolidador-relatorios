@@ -49,9 +49,7 @@ def encontrar_arquivos(pasta: Path) -> list[Path]:
     que não saibamos ler. Levanta ErroLeitura se a pasta não existir.
     """
     if not pasta.exists():
-        raise ErroLeitura(
-            f"A pasta '{pasta}' não existe. Verifique o caminho informado."
-        )
+        raise ErroLeitura(f"A pasta '{pasta}' não existe. Verifique o caminho informado.")
     if not pasta.is_dir():
         raise ErroLeitura(f"'{pasta}' não é uma pasta.")
 
@@ -86,10 +84,7 @@ def _ler_excel(caminho: Path) -> list[Planilha]:
             "exigem a biblioteca 'xlrd'. Salve como .xlsx ou instale xlrd."
         ) from exc
 
-    return [
-        Planilha(df=df, arquivo=caminho.name, aba=nome_aba)
-        for nome_aba, df in abas.items()
-    ]
+    return [Planilha(df=df, arquivo=caminho.name, aba=nome_aba) for nome_aba, df in abas.items()]
 
 
 def ler_pasta(pasta: Path) -> list[Planilha]:

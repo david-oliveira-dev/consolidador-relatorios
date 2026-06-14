@@ -8,6 +8,10 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # Saída gerada pela ferramenta (relatórios) — não versionar
 saida/
