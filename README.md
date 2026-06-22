@@ -111,3 +111,8 @@ pytest
 - Agendamento automático (rodar todo dia 1 do mês).
 - Configuração do mapeamento de colunas por arquivo `.yaml`, sem mexer no código.
 - Suporte a mais formatos (Google Sheets, `.ods`).
+
+## 📫 Contato
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/david-oliveira-9970a42a5)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/david-oliveira-dev)
