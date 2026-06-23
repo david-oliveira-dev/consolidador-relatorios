@@ -1,0 +1,3 @@
+# O notebook é demonstração (notebooks/demo.ipynb) — não deve dominar a
+# estatística de linguagem do repositório (o código real está em src/).
+*.ipynb linguist-documentation
